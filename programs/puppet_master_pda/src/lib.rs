@@ -1,16 +1,20 @@
 use anchor_lang::prelude::*;
-use puppet::cpi::accounts::SetData;
-use puppet::program::Puppet;
-use puppet::{self, Data};
+use puppet_pda::cpi::accounts::SetData;
+use puppet_pda::program::PuppetPda;
+use puppet_pda::{self, Data};
 
-declare_id!("Gygqe623XCAFebhzBLvSp28jThvAftfxf6wFwxVbkvj1");
+declare_id!("2kK8TynPyzcc1NrpHihDeU6r48PcxtbBcXXLyin6ZyyH");
 
 #[program]
-pub mod puppet_master {
+pub mod puppet_master_pda {
     use super::*;
 
-    pub fn pull_strings(ctx: Context<PullStrings>, data: u64) -> Result<()> {
-        puppet::cpi::set_data(ctx.accounts.set_data_ctx(), data)
+    pub fn pull_strings(ctx: Context<PullStrings>, bump: u8, data: u64) -> Result<()> {
+        let bump = &[bump];
+        puppet_pda::cpi::set_data(
+            ctx.accounts.set_data_ctx().with_signer(&[&[bump]]),
+            data
+        )
     }
 }
 
@@ -18,8 +22,9 @@ pub mod puppet_master {
 pub struct PullStrings<'info> {
     #[account(mut)]
     pub puppet: Account<'info, Data>,
-    pub puppet_program: Program<'info, Puppet>,
-    pub authority: Signer<'info>,
+    pub puppet_program: Program<'info, PuppetPda>,
+    /// CHECK: only used as a siging PDA
+    pub authority: UncheckedAccount<'info>,
 }
 
 impl<'info> PullStrings<'info> {

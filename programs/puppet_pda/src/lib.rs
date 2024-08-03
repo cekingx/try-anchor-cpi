@@ -1,9 +1,9 @@
 use anchor_lang::prelude::*;
 
-declare_id!("9zAPc8Y2Ka9Up95SzWezPMJavRb164od15M5Z7f8q13i");
+declare_id!("8y9kDk4gpGEEoxckCdVPcmRMo6fe55M7zKVHaxHgExKt");
 
 #[program]
-pub mod puppet {
+pub mod puppet_pda {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>, authority: Pubkey) -> Result<()> {

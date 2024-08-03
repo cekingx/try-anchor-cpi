@@ -5,8 +5,10 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-puppet = "AFs6h6XWPjoUPHBCrMhWien7Y7Gz188zYx2XaiE6Sfhr"
-puppet-master = "A3jFsjY7Yv4RTEtarG2yHXPJmabd8HKckoDGcNJCSfBi"
+puppet = "9zAPc8Y2Ka9Up95SzWezPMJavRb164od15M5Z7f8q13i"
+puppet-master = "Gygqe623XCAFebhzBLvSp28jThvAftfxf6wFwxVbkvj1"
+puppet_master_pda = "2kK8TynPyzcc1NrpHihDeU6r48PcxtbBcXXLyin6ZyyH"
+puppet_pda = "8y9kDk4gpGEEoxckCdVPcmRMo6fe55M7zKVHaxHgExKt"
 
 [registry]
 url = "https://api.apr.dev"
